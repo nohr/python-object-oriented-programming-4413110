@@ -12,10 +12,17 @@ class Asset(ABC):
     def __init__(self, price):
         self.price = price
 
-    @abstractmethod
-    def __str__(self):
-        pass
-
+    # @abstractmethod
+    # def __str__(self):
+    #     return f"{self.ticker}: {self.company} -- ${self.price}"
+    def __lt__(self, value):
+        return self.price < value.price
+    
+    def __ge__(self, value):
+        return self.price >= value.price
+        
+    def __eq__(self, value):
+        return self.price == value.price
 
 class Stock(Asset):
     def __init__(self, ticker, price, company):
